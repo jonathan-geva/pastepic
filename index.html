@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>pastepic — paste an image, it downloads</title>
+<meta name="description" content="Paste, drop or pick an image and it downloads instantly. Everything happens in your browser — nothing is ever uploaded." />
+<meta name="theme-color" content="#07070a" />
+<meta name="color-scheme" content="dark" />
+<link rel="icon" href="favicon.svg" type="image/svg+xml" />
+<meta property="og:title" content="pastepic" />
+<meta property="og:description" content="Paste an image. It's saved. No uploads, no accounts, nothing leaves your browser." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<div class="site">
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand__dot" aria-hidden="true"></span>
+      <span class="brand__name">pastepic</span>
+    </div>
+    <span class="badge">100% local</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Paste an image<br /><span class="dim">It's saved.</span></h1>
+      <p class="lede">Press the shortcut anywhere on this page, drop a file, or pick one.
+        The download starts instantly — nothing ever leaves your browser.</p>
+
+      <div class="keys" id="keys">
+        <button class="key" id="keyCtrl" type="button" aria-pressed="false" aria-label="Control key">
+          <b>Ctrl</b>
+          <small>control</small>
+        </button>
+        <span class="plus" aria-hidden="true">+</span>
+        <button class="key" id="keyV" type="button" aria-label="V key">
+          <b>V</b>
+          <small>paste</small>
+        </button>
+      </div>
+
+      <div class="hints">
+        <span>or drop an image anywhere</span>
+        <span class="sep" aria-hidden="true"></span>
+        <button class="file-btn" id="pickBtn" type="button">Choose a file</button>
+      </div>
+
+      <p class="fineprint">⌘ V works on macOS too</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span class="formats mono">PNG · JPG · GIF · WEBP · AVIF · SVG</span>
+    <span>No uploads · No accounts · No tracking</span>
+  </footer>
+</div>
+
+<input type="file" id="fileInput" accept="image/*" multiple hidden />
+
+<div class="drop" id="drop" aria-hidden="true">
+  <div class="drop__frame"></div>
+  <div class="drop__label">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 3.5v10.5" />
+      <path d="M7.5 10 12 14.5 16.5 10" />
+      <path d="M4 17v2.5A1.5 1.5 0 0 0 5.5 21h13a1.5 1.5 0 0 0 1.5-1.5V17" />
+    </svg>
+    <span>Drop to download</span>
+    <span class="mono">let go and it's saved</span>
+  </div>
+</div>
+
+<div class="fx" id="fx" aria-hidden="true">
+  <div class="fx__inner">
+    <div class="fx__thumb"><img id="fxImg" alt="" /></div>
+    <div class="fx__trail"></div>
+    <div class="fx__tray">
+      <span class="fx__ring"></span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 4v10" />
+        <path d="M7.5 10.5 12 15l4.5-4.5" />
+        <path d="M4 17.5V19a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1.5" />
+      </svg>
+    </div>
+    <div class="fx__label">Downloaded</div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<noscript><p class="noscript">pastepic needs JavaScript to read your clipboard and save the file.</p></noscript>
+
+<script src="app.js"></script>
+</body>
+</html>
